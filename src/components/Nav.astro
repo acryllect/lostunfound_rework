@@ -84,6 +84,7 @@ const links = [
 
   .menu ul {
     display: flex;
+    align-items: center;
     gap: 1.25rem;
     list-style: none;
     margin: 0;
@@ -91,22 +92,29 @@ const links = [
   }
 
   .menu-link {
+    position: relative;
     text-decoration: none;
     display: inline-flex;
-    flex-direction: column;
-    gap: 0.35rem;
+    align-items: center;
+    height: 4.5rem;
+    padding-bottom: 0;
+    overflow: hidden;
   }
 
   .menu-line {
-    display: block;
-    height: 1px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
     background: var(--color-accent);
-    transform: translateX(-101%);
+    transform: scaleX(0);
+    transform-origin: left center;
     transition: transform 250ms ease;
   }
 
   .menu-link:hover .menu-line {
-    transform: translateX(0);
+    transform: scaleX(1);
   }
 
   @media (max-width: 760px) {

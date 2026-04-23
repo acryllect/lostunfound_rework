@@ -13,84 +13,168 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
-const { title, artist, category, genre, cover_image, spotify_url, soundcloud_url, description, credits } = project.data;
+const { title, artist, category, genre, spotify_url, soundcloud_url, description, credits } = project.data;
+
+const metaItems = [category, ...(genre ?? [])];
 ---
 
 <ProjectLayout title={`${title} | Lost Unfound Records`}>
   <article class="project page-section">
-    <img src={cover_image} alt={`${title} cover art`} class="cover" />
-    <h1 class="text-display">{title}</h1>
-    <p class="artist">{artist}</p>
-    <div class="meta">
-      <span class="text-label">{category}</span>
-      {genre?.map((g) => <span class="text-small">{g}</span>)}
+
+    <div class="project-header">
+      <h1 class="text-display">{title}</h1>
+      <p class="artist">{artist}</p>
+      <div class="meta">
+        {metaItems.map((item, i) => (
+          <>
+            <span class="meta-item">{item}</span>
+            {i < metaItems.length - 1 && <span class="dot" aria-hidden="true">·</span>}
+          </>
+        ))}
+      </div>
     </div>
-    <div class="embed">
-      {spotify_url ? <SpotifyEmbed url={spotify_url} /> : soundcloud_url ? <SoundCloudEmbed url={soundcloud_url} /> : null}
-    </div>
-    {description ? <p class="description">{description}</p> : null}
-    {
-      credits?.length ? (
+
+    {(spotify_url || soundcloud_url) && (
+      <div class="embed">
+        {spotify_url ? <SpotifyEmbed url={spotify_url} /> : <SoundCloudEmbed url={soundcloud_url} />}
+      </div>
+    )}
+
+    {description && <p class="description">{description}</p>}
+
+    {credits?.length && (
+      <div class="credits-section">
+        <h2 class="text-label credits-heading">Credits</h2>
         <ul class="credits">
           {credits.map((credit) => (
             <li>
-              <strong>{credit.role}:</strong> {credit.name}
+              <span class="credit-role">{credit.role}</span>
+              <span class="credit-name">{credit.name}</span>
             </li>
           ))}
         </ul>
-      ) : null
-    }
-    <p><a href="/">← Back to portfolio</a></p>
+      </div>
+    )}
+
+    <p class="back"><a href="/">← Back to portfolio</a></p>
+
   </article>
 </ProjectLayout>
 
 <style>
   .project {
     display: grid;
-    gap: 1rem;
+    gap: 3rem;
+    max-width: 860px;
     animation: fade-up 0.4s ease-out both;
   }
 
   @keyframes fade-up {
-    from {
-      opacity: 0;
-      transform: translateY(14px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
-  .cover {
-    width: 100%;
-    max-height: 620px;
-    object-fit: cover;
-    border: 1px solid var(--color-border);
+  .project-header {
+    display: grid;
+    gap: 0.6rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
   }
 
-  h1,
+  h1 {
+    margin: 0 0 0.25rem;
+  }
+
   .artist {
     margin: 0;
-  }
-
-  .artist {
     color: var(--color-muted);
+    font-size: 1.1rem;
   }
 
   .meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.6rem;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+  }
+
+  .meta-item {
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .meta-item:first-child {
+    color: var(--color-accent);
+  }
+
+  .dot {
+    color: var(--color-border);
+    font-size: 1rem;
+    line-height: 1;
   }
 
   .description {
-    max-width: 72ch;
+    color: var(--color-muted);
+    max-width: 68ch;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  .credits-section {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.5rem;
+  }
+
+  .credits-heading {
+    color: var(--color-accent);
+    margin-bottom: 1rem;
   }
 
   .credits {
+    list-style: none;
     margin: 0;
-    padding-left: 1rem;
-    max-width: 72ch;
+    padding: 0;
+    display: grid;
+    gap: 0;
+  }
+
+  .credits li {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 1rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .credit-role {
+    color: var(--color-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .credit-name {
+    color: var(--color-text);
+    font-size: 0.9rem;
+  }
+
+  .back {
+    margin: 0;
+  }
+
+  .back a {
+    color: var(--color-muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
+  }
+
+  .back a:hover {
+    color: var(--color-text);
   }
 </style>

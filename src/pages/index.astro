@@ -13,11 +13,16 @@ const projects = (await getCollection('projects'))
 <Base title="Lost Unfound Records">
   <section class="page-section hero">
     <p class="text-label">Forli / Bologna — Italy</p>
-    <h1 class="text-hero" id="hero-title" data-final="Lost Unfound">Lost Unfound</h1>
+    <h1 class="text-hero" id="hero-title">
+      <span data-word="Lost">Lost</span>
+      <span data-word="Unfound">Unfound</span>
+    </h1>
     <p class="intro">
       Independent production and recording studio focused on texture, songwriting, and emotionally honest records.
     </p>
-    <Button href="/contact" label="Start a Project" />
+    <div class="cta-wrap">
+      <Button href="/contact" label="Start a Project" />
+    </div>
   </section>
 
   <section class="page-section">
@@ -28,30 +33,45 @@ const projects = (await getCollection('projects'))
 </Base>
 
 <script>
-  const target = document.getElementById('hero-title');
-  if (target) {
-    const finalText = target.dataset.final || target.textContent || '';
-    const chars = '!<>-_\\/[]{}=+*^?#________';
+  const chars = '!<>-_\\/[]{}=+*^?#________';
+
+  function scrambleLine(el: HTMLElement, delay: number) {
+    const final = el.dataset.word || el.textContent || '';
     let frame = 0;
-    const totalFrames = 20;
+    const totalFrames = 18;
 
-    const scramble = () => {
+    const tick = () => {
       const progress = frame / totalFrames;
-      const revealCount = Math.floor(finalText.length * progress);
-      target.textContent = finalText
+      const revealed = Math.floor(final.length * progress);
+      el.textContent = final
         .split('')
-        .map((char, i) => (i < revealCount ? char : chars[Math.floor(Math.random() * chars.length)]))
+        .map((ch, i) =>
+          i < revealed ? ch : chars[Math.floor(Math.random() * chars.length)]
+        )
         .join('');
-
-      frame += 1;
+      frame++;
       if (frame <= totalFrames) {
-        setTimeout(scramble, 40);
+        setTimeout(tick, 40);
       } else {
-        target.textContent = finalText;
+        el.textContent = final;
       }
     };
 
-    setTimeout(scramble, 120);
+    setTimeout(tick, delay);
+  }
+
+  const spans = document.querySelectorAll<HTMLElement>('#hero-title span[data-word]');
+  spans.forEach((el, i) => scrambleLine(el, 120 + i * 200));
+
+  // Match button width to the rendered width of the intro paragraph
+  const intro = document.querySelector<HTMLElement>('.intro');
+  const ctaWrap = document.querySelector<HTMLElement>('.cta-wrap');
+  if (intro && ctaWrap) {
+    const setWidth = () => {
+      ctaWrap.style.width = `${intro.getBoundingClientRect().width}px`;
+    };
+    setWidth();
+    window.addEventListener('resize', setWidth);
   }
 </script>
 
@@ -68,8 +88,37 @@ const projects = (await getCollection('projects'))
     color: var(--color-muted);
   }
 
+  .text-hero {
+    display: grid;
+    gap: 0.05em;
+    margin: 0;
+  }
+
+  .text-hero span {
+    display: block;
+  }
+
+  .cta-wrap {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: cta-enter 0.5s ease-out forwards;
+    animation-delay: 1s;
+  }
+
+  .cta-wrap :global(.btn) {
+    width: 100%;
+    justify-content: center;
+  }
+
   h2 {
     margin-top: 0;
     margin-bottom: 1.5rem;
+  }
+
+  @keyframes cta-enter {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 </style>

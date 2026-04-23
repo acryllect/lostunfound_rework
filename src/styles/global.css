@@ -6,8 +6,8 @@
   --color-border: #2a2a2a;
   --color-text: #f0ede6;
   --color-muted: #888580;
-  --color-accent: #c8301a;
-  --color-accent-hover: #e0361e;
+  --color-accent: #cf243f;
+  --color-accent-hover: #df3552;
 }
 
 *,
@@ -45,11 +45,11 @@ body {
 }
 
 .text-hero {
-  font-family: "Syne", sans-serif;
+  font-family: "Oswald", sans-serif;
   font-size: clamp(4rem, 10vw, 9rem);
-  font-weight: 800;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.01em;
   line-height: 0.9;
 }
 

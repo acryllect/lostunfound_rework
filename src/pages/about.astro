@@ -3,5 +3,126 @@ import Base from '../layouts/Base.astro';
 ---
 
 <Base title="About | Lost Unfound Records">
-  <h1>About</h1>
+  <div class="page-section">
+    <p class="text-label">Who we are</p>
+    <h1 class="text-display">Two people.<br />One room.</h1>
+
+    <p class="intro">
+      Lost Unfound is a recording and production studio built around a simple idea: the best records come from
+      genuine collaboration between people who trust each other. We're based in the Forlì / Bologna area of Italy,
+      and we work with artists who take their music seriously.
+    </p>
+
+    <div class="profiles">
+      <article class="profile">
+        <div class="profile-img-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&q=80"
+            alt="Alessandro Pelosio"
+          />
+        </div>
+        <div class="profile-text">
+          <h2 class="text-heading">Alessandro Pelosio</h2>
+          <p class="text-label role">Producer · Sound Engineer · Mixer</p>
+          <p>
+            Alessandro has been recording and producing music for over a decade. His background spans studio
+            engineering, live sound, and electronic music production — which means he thinks about a record both
+            as a sound object and as a live experience. He has a particular interest in the relationship between
+            room acoustics and recorded tone, and a near-obsessive approach to low-frequency balance.
+          </p>
+          <p>
+            Outside the studio he plays guitar badly and reads about analogue signal processing. He is the reason
+            the studio has too many microphones.
+          </p>
+        </div>
+      </article>
+
+      <article class="profile reverse">
+        <div class="profile-img-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&q=80"
+            alt="Davide Bacchi"
+          />
+        </div>
+        <div class="profile-text">
+          <h2 class="text-heading">Davide Bacchi</h2>
+          <p class="text-label role">Songwriter · Producer · Assistant Engineer</p>
+          <p>
+            Davide approaches production from the songwriter's perspective first. Before any technical decisions
+            are made, he asks whether the arrangement is serving the song. His strength is in finding what a track
+            needs and removing what it doesn't — a discipline that often produces more impactful results than adding.
+          </p>
+          <p>
+            He has written and produced for artists across indie pop, folk, and experimental genres. He is the
+            reason the studio occasionally smells of very good coffee.
+          </p>
+        </div>
+      </article>
+    </div>
+  </div>
 </Base>
+
+<style>
+  .intro {
+    max-width: 70ch;
+    color: var(--color-muted);
+    margin-block: 2rem 4rem;
+    font-size: 1.1rem;
+  }
+
+  h1 {
+    margin-block: 1rem 0;
+  }
+
+  .profiles {
+    display: grid;
+    gap: 6rem;
+  }
+
+  .profile {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .profile.reverse {
+    grid-template-columns: 1.4fr 1fr;
+  }
+
+  .profile.reverse .profile-img-wrap {
+    order: 2;
+  }
+
+  .profile.reverse .profile-text {
+    order: 1;
+  }
+
+  .profile-img-wrap {
+    border: 1px solid var(--color-border);
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+  }
+
+  .profile-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(30%);
+  }
+
+  .role {
+    color: var(--color-accent);
+    margin-block: 0.5rem 1.25rem;
+  }
+
+  p {
+    color: var(--color-muted);
+    max-width: 60ch;
+  }
+
+  p + p {
+    margin-top: 1rem;
+  }
+</style>

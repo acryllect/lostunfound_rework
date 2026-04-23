@@ -1,7 +1,100 @@
 ---
 import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
 ---
 
 <Base title="Contact | Lost Unfound Records">
-  <h1>Contact</h1>
+  <div class="page-section contact-wrap">
+    <p class="text-label">Get in touch</p>
+    <h1 class="text-display">Let's make<br />something.</h1>
+
+    <p class="lead">
+      Interested in working together? We'd love to hear about your project — whether it's fully formed
+      or still just an idea. We work with a small number of artists at a time, so reach out early.
+    </p>
+
+    <div class="contact-block">
+      <p class="text-label block-label">Email</p>
+      <a class="email-link text-heading" href="mailto:lostunfoundrecords@proton.me">
+        lostunfoundrecords@proton.me
+      </a>
+    </div>
+
+    <div class="detail-list">
+      <div class="detail-item">
+        <p class="text-label">Location</p>
+        <p>Forlì / Bologna area, Italy</p>
+      </div>
+      <div class="detail-item">
+        <p class="text-label">Response time</p>
+        <p>We aim to reply within 48 hours.</p>
+      </div>
+      <div class="detail-item">
+        <p class="text-label">Availability</p>
+        <p>Taking bookings from Spring 2025 onward.</p>
+      </div>
+    </div>
+  </div>
 </Base>
+
+<style>
+  .contact-wrap {
+    max-width: 900px;
+  }
+
+  h1 {
+    margin-block: 1rem 2rem;
+  }
+
+  .lead {
+    color: var(--color-muted);
+    font-size: 1.1rem;
+    max-width: 62ch;
+    margin-bottom: 3rem;
+  }
+
+  .contact-block {
+    padding: 2rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 3rem;
+  }
+
+  .block-label {
+    color: var(--color-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .email-link {
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.2s ease;
+  }
+
+  .email-link:hover {
+    color: var(--color-accent);
+  }
+
+  .detail-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .detail-item .text-label {
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .detail-item p:last-child {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  @media (max-width: 680px) {
+    .detail-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

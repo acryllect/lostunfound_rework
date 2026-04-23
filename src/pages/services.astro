@@ -2,6 +2,164 @@
 import Base from '../layouts/Base.astro';
 ---
 
-<Base title="Services | Lost Unfound Records">
-  <h1>Services</h1>
+<Base title="Services & Gear | Lost Unfound Records">
+  <div class="page-section">
+    <p class="text-label">What we offer</p>
+    <h1 class="text-display">Services<br />&amp; Gear</h1>
+
+    <section class="content-section">
+      <h2 class="text-heading">What We Do</h2>
+
+      <div class="service-list">
+        <div class="service-item">
+          <h3>Pre-Production</h3>
+          <p>
+            We work with you before the session starts. Arrangements, key choices, tempo, structure — getting
+            these right before you step into the studio saves time and money and results in a better record. We
+            treat pre-production as a full creative collaboration, not a formality.
+          </p>
+        </div>
+
+        <div class="service-item">
+          <h3>Recording & Production</h3>
+          <p>
+            Full production from scratch, or tracking support for projects already in progress. We record live
+            instruments, vocals, and electronic elements. We're comfortable working in any genre but have
+            particular experience in singer-songwriter, indie rock, folk, and electronic music.
+          </p>
+        </div>
+
+        <div class="service-item">
+          <h3>Mixing</h3>
+          <p>
+            Mix-only projects are welcome. Send us your session files (Pro Tools, Logic, Ableton, Reaper) and
+            we'll return a polished stereo mix, with revisions. We work closely with the artist throughout the
+            mix process rather than delivering one pass and asking for feedback.
+          </p>
+        </div>
+
+        <div class="service-item">
+          <h3>Session Musicians</h3>
+          <p>
+            We maintain relationships with a small network of trusted session musicians — guitar, bass, drums,
+            keys, strings — who work in a way that complements rather than overwhelms a production. Available
+            on request.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2 class="text-heading">Equipment</h2>
+
+      <div class="gear-grid">
+        <div class="gear-category">
+          <h3 class="text-label">Microphones</h3>
+          <ul>
+            <li>Neumann U87 Ai</li>
+            <li>AKG C414 XLII (pair)</li>
+            <li>Shure SM7B</li>
+            <li>Sennheiser MD 421 II</li>
+            <li>Shure SM57 (×4)</li>
+            <li>Rode NT5 (pair)</li>
+          </ul>
+        </div>
+
+        <div class="gear-category">
+          <h3 class="text-label">Production & Monitoring</h3>
+          <ul>
+            <li>Mac Pro — Apple Silicon</li>
+            <li>Logic Pro X / Ableton Live 12</li>
+            <li>Universal Audio Apollo x8</li>
+            <li>SSL G-Series Bus Compressor (clone)</li>
+            <li>Neve 1073 Preamp (pair)</li>
+            <li>Focal Solo6 Be monitors</li>
+            <li>Yamaha HS5 (secondary)</li>
+          </ul>
+        </div>
+
+        <div class="gear-category">
+          <h3 class="text-label">Instruments</h3>
+          <ul>
+            <li>Fender Telecaster (1973)</li>
+            <li>Gibson ES-335</li>
+            <li>Fender Jazz Bass</li>
+            <li>Ludwig Classic Maple drum kit</li>
+            <li>Nord Stage 4</li>
+            <li>Moog Subsequent 37</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
 </Base>
+
+<style>
+  h1 {
+    margin-block: 1rem 0;
+  }
+
+  .content-section {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+
+  .service-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 3rem;
+  }
+
+  .service-item h3 {
+    font-family: "Syne", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.75rem;
+  }
+
+  .service-item p {
+    color: var(--color-muted);
+    max-width: 55ch;
+  }
+
+  .gear-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .gear-category h3 {
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+  }
+
+  .gear-category ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .gear-category li {
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 900px) {
+    .service-list,
+    .gear-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

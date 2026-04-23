@@ -2,6 +2,99 @@
 import Base from '../layouts/Base.astro';
 ---
 
-<Base title="Disclaimer | Lost Unfound Records">
-  <h1>Disclaimer</h1>
+<Base title="Disclaimer & Copyright | Lost Unfound Records">
+  <div class="page-section disclaimer-wrap">
+    <p class="text-label">Legal</p>
+    <h1 class="text-display">Disclaimer &amp;<br />Copyright</h1>
+
+    <div class="content">
+      <section class="clause">
+        <h2>Copyright of Recorded Works</h2>
+        <p>
+          All recordings produced at Lost Unfound Studio are the intellectual property of the respective
+          artists and rights holders unless otherwise agreed in writing. Lost Unfound Records claims no
+          ownership over artist-created material, compositions, or masters.
+        </p>
+      </section>
+
+      <section class="clause">
+        <h2>Studio's Relationship to Artist Material</h2>
+        <p>
+          Lost Unfound Studio operates as a service provider. Our role is technical and creative support —
+          production, engineering, mixing. Unless a separate agreement specifies otherwise, all rights to
+          recorded works remain with the commissioning artist or their designated rights holder.
+        </p>
+        <p>
+          Portfolio examples displayed on this website are published with the permission of the respective
+          artists and are used for promotional purposes only.
+        </p>
+      </section>
+
+      <section class="clause">
+        <h2>Contact for IP Queries</h2>
+        <p>
+          For any intellectual property queries, rights disputes, or takedown requests, please contact us
+          directly at <a href="mailto:lostunfoundrecords@proton.me">lostunfoundrecords@proton.me</a>.
+          We take these matters seriously and will respond within five business days.
+        </p>
+      </section>
+
+      <section class="clause">
+        <h2>Website Content</h2>
+        <p>
+          All original written content and design on this website is © {new Date().getFullYear()} Lost Unfound
+          Records. Reproduction without permission is not permitted.
+        </p>
+      </section>
+    </div>
+  </div>
 </Base>
+
+<style>
+  .disclaimer-wrap {
+    max-width: 800px;
+  }
+
+  h1 {
+    margin-block: 1rem 3rem;
+  }
+
+  .content {
+    display: grid;
+    gap: 0;
+  }
+
+  .clause {
+    padding-block: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  h2 {
+    font-family: "Syne", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+  }
+
+  p {
+    color: var(--color-muted);
+    max-width: 65ch;
+    margin: 0;
+  }
+
+  p + p {
+    margin-top: 0.75rem;
+  }
+
+  a {
+    color: var(--color-text);
+    text-underline-offset: 3px;
+  }
+
+  a:hover {
+    color: var(--color-accent);
+  }
+</style>
