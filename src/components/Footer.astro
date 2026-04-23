@@ -1,4 +1,32 @@
-<footer>
-  <p>&copy; {new Date().getFullYear()} Lost Unfound Records</p>
-  <p><a href="mailto:lostunfoundrecords@proton.me">lostunfoundrecords@proton.me</a></p>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="text-small">© {new Date().getFullYear()} Lost Unfound Records</p>
+    <p class="text-small">
+      <a href="mailto:lostunfoundrecords@proton.me">lostunfoundrecords@proton.me</a>
+    </p>
+  </div>
 </footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    margin-top: 4rem;
+  }
+
+  .footer-inner {
+    min-height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  @media (max-width: 760px) {
+    .footer-inner {
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding-block: 1rem;
+    }
+  }
+</style>

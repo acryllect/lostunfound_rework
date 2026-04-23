@@ -1,0 +1,60 @@
+---
+// Grain.astro — animated film grain overlay
+---
+<canvas id="grain-canvas"></canvas>
+
+<style>
+  #grain-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.13;
+  }
+</style>
+
+<script>
+  const canvas = document.getElementById('grain-canvas');
+  const ctx = canvas?.getContext('2d');
+  let noiseFrames = [];
+  let frame = 0;
+  let loopTimeout;
+
+  const setup = () => {
+    if (!canvas || !ctx) return;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    noiseFrames = [];
+    for (let i = 0; i < 10; i++) {
+      const idata = ctx.createImageData(canvas.width, canvas.height);
+      const buf = new Uint32Array(idata.data.buffer);
+      for (let j = 0; j < buf.length; j++) {
+        if (Math.random() < 0.1) buf[j] = 0xff000000;
+      }
+      noiseFrames.push(idata);
+    }
+  };
+
+  const loop = () => {
+    if (!ctx) return;
+    frame = frame === 9 ? 0 : frame + 1;
+    ctx.putImageData(noiseFrames[frame], 0, 0);
+    loopTimeout = setTimeout(() => requestAnimationFrame(loop), 1000 / 25);
+  };
+
+  setup();
+  loop();
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      clearTimeout(loopTimeout);
+      setup();
+      loop();
+    }, 200);
+  });
+</script>

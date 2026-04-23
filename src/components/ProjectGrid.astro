@@ -1,3 +1,47 @@
-<section>
-  <p>Project grid placeholder</p>
+---
+import ProjectCard from './ProjectCard.astro';
+const { projects } = Astro.props;
+---
+
+<section class="project-grid" id="project-grid">
+  {projects.map((project, index) => <ProjectCard project={project} featured={index === 0} />)}
 </section>
+
+<script>
+  const grid = document.getElementById('project-grid');
+  if (grid) {
+    const cards = [...grid.querySelectorAll('.project-card')];
+    window.addEventListener('project-filter-change', (event) => {
+      const selected = event.detail;
+      cards.forEach((card) => {
+        const match = selected === 'All' || card.dataset.category === selected;
+        card.style.transition = 'opacity 150ms ease';
+        card.style.opacity = match ? '1' : '0';
+        setTimeout(() => {
+          card.style.display = match ? '' : 'none';
+          if (match) card.style.opacity = '1';
+        }, 150);
+      });
+    });
+  }
+</script>
+
+<style>
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  @media (max-width: 1024px) {
+    .project-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 680px) {
+    .project-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

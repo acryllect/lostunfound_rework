@@ -1,0 +1,50 @@
+---
+const { href = '#', label } = Astro.props;
+---
+<a href={href} class="btn">
+  <span class="btn-circle"></span>
+  <span class="btn-label">{label}</span>
+</a>
+
+<style>
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 2rem;
+    border: 1px solid var(--color-text);
+    color: var(--color-text);
+    font-family: "Work Sans", sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .btn-circle {
+    position: absolute;
+    inset: 0;
+    background: var(--color-accent);
+    transform: translateX(-105%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+  }
+
+  .btn:hover .btn-circle {
+    transform: translateX(0);
+  }
+
+  .btn-label {
+    position: relative;
+    z-index: 1;
+    transition: color 0.35s ease;
+  }
+
+  .btn:hover .btn-label {
+    color: #fff;
+  }
+</style>

@@ -1,5 +1,18 @@
 ---
 const { url } = Astro.props;
+const embedUrl = url ? url.replace('open.spotify.com/', 'open.spotify.com/embed/') : '';
 ---
 
-{url ? <iframe src={url} title="Spotify embed" loading="lazy"></iframe> : null}
+{
+  embedUrl ? (
+    <iframe
+      src={embedUrl}
+      title="Spotify embed"
+      loading="lazy"
+      width="100%"
+      height="152"
+      frameborder="0"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    ></iframe>
+  ) : null
+}

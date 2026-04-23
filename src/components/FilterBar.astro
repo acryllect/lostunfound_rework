@@ -1,3 +1,49 @@
-<div>
-  <p>Filter bar placeholder</p>
+---
+const categories = ['All', 'Full Production', 'Production & Engineering', 'Mixing & Engineering'];
+---
+
+<div class="filter-bar" id="filter-bar">
+  {categories.map((category, index) => (
+    <button class:list={['filter-button text-label', index === 0 && 'is-active']} data-filter={category} type="button">
+      {category}
+    </button>
+  ))}
 </div>
+
+<script>
+  const bar = document.getElementById('filter-bar');
+  if (bar) {
+    const buttons = [...bar.querySelectorAll('.filter-button')];
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        buttons.forEach((b) => b.classList.remove('is-active'));
+        button.classList.add('is-active');
+        window.dispatchEvent(new CustomEvent('project-filter-change', { detail: button.dataset.filter }));
+      });
+    });
+  }
+</script>
+
+<style>
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .filter-button {
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text);
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .filter-button:hover,
+  .filter-button.is-active {
+    border-color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 18%, transparent);
+  }
+</style>

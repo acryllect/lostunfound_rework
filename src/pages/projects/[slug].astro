@@ -1,6 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import SpotifyEmbed from '../../components/SpotifyEmbed.astro';
+import SoundCloudEmbed from '../../components/SoundCloudEmbed.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -11,9 +13,84 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
+const { title, artist, category, genre, cover_image, spotify_url, soundcloud_url, description, credits } = project.data;
 ---
 
-<ProjectLayout title={`${project.data.title} | Lost Unfound Records`}>
-  <h1>{project.data.title}</h1>
-  <p>{project.data.artist}</p>
+<ProjectLayout title={`${title} | Lost Unfound Records`}>
+  <article class="project page-section">
+    <img src={cover_image} alt={`${title} cover art`} class="cover" />
+    <h1 class="text-display">{title}</h1>
+    <p class="artist">{artist}</p>
+    <div class="meta">
+      <span class="text-label">{category}</span>
+      {genre?.map((g) => <span class="text-small">{g}</span>)}
+    </div>
+    <div class="embed">
+      {spotify_url ? <SpotifyEmbed url={spotify_url} /> : soundcloud_url ? <SoundCloudEmbed url={soundcloud_url} /> : null}
+    </div>
+    {description ? <p class="description">{description}</p> : null}
+    {
+      credits?.length ? (
+        <ul class="credits">
+          {credits.map((credit) => (
+            <li>
+              <strong>{credit.role}:</strong> {credit.name}
+            </li>
+          ))}
+        </ul>
+      ) : null
+    }
+    <p><a href="/">← Back to portfolio</a></p>
+  </article>
 </ProjectLayout>
+
+<style>
+  .project {
+    display: grid;
+    gap: 1rem;
+    animation: fade-up 0.4s ease-out both;
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .cover {
+    width: 100%;
+    max-height: 620px;
+    object-fit: cover;
+    border: 1px solid var(--color-border);
+  }
+
+  h1,
+  .artist {
+    margin: 0;
+  }
+
+  .artist {
+    color: var(--color-muted);
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .description {
+    max-width: 72ch;
+  }
+
+  .credits {
+    margin: 0;
+    padding-left: 1rem;
+    max-width: 72ch;
+  }
+</style>
