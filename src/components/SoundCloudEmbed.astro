@@ -1,0 +1,5 @@
+---
+const { url } = Astro.props;
+---
+
+{url ? <iframe src={url} title="SoundCloud embed" loading="lazy"></iframe> : null}

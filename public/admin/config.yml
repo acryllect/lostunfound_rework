@@ -1,0 +1,42 @@
+backend:
+  name: git-gateway
+  repo: acryllect/lostunfound_rework
+  branch: main
+  auth_type: pkce
+  base_url: https://auth.decapbridge.com
+  auth_endpoint: /sites/273fafd2-430a-4d47-b945-74848e055385/pkce
+  auth_token_endpoint: /sites/273fafd2-430a-4d47-b945-74848e055385/token
+  gateway_url: https://gateway.decapbridge.com
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "projects"
+    label: "Portfolio Projects"
+    folder: "src/content/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Artist", name: "artist", widget: "string" }
+      - {
+          label: "Category",
+          name: "category",
+          widget: "select",
+          options: ["Full Production", "Production & Engineering", "Mixing & Engineering"],
+        }
+      - { label: "Genre / Tags", name: "genre", widget: "list", required: false }
+      - { label: "Cover Image", name: "cover_image", widget: "image" }
+      - { label: "Spotify URL", name: "spotify_url", widget: "string", required: false }
+      - { label: "SoundCloud URL", name: "soundcloud_url", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "markdown", required: false }
+      - label: "Credits"
+        name: "credits"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Role", name: "role", widget: "string" }
+          - { label: "Name", name: "name", widget: "string" }
+      - { label: "Publish Date", name: "publish_date", widget: "datetime" }
+      - { label: "Published", name: "published", widget: "boolean", default: true }
