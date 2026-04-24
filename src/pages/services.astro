@@ -1,53 +1,40 @@
 ---
 import Base from '../layouts/Base.astro';
+import servicesData from '../content/pages/services.json';
+
+const { intro, pre_production, recording, mixing, session_musicians } = servicesData;
 ---
 
 <Base title="Services & Gear | Lost Unfound Records">
   <div class="page-section">
     <p class="text-label">What we offer</p>
     <h1 class="text-display" data-scramble>
-      <span data-word="Services">Services</span>
-      <span data-word="& Gear">&amp; Gear</span>
+      <span data-word="What">What</span>
+      <span data-word="We Do">We Do</span>
     </h1>
 
-    <section class="content-section">
-      <h2 class="text-heading">What We Do</h2>
+    <p class="intro">{intro}</p>
 
+    <section class="content-section">
       <div class="service-list">
         <div class="service-item">
           <h3>Pre-Production</h3>
-          <p>
-            We work with you before the session starts. Arrangements, key choices, tempo, structure — getting
-            these right before you step into the studio saves time and money and results in a better record. We
-            treat pre-production as a full creative collaboration, not a formality.
-          </p>
+          <p>{pre_production}</p>
         </div>
 
         <div class="service-item">
           <h3>Recording & Production</h3>
-          <p>
-            Full production from scratch, or tracking support for projects already in progress. We record live
-            instruments, vocals, and electronic elements. We're comfortable working in any genre but have
-            particular experience in singer-songwriter, indie rock, folk, and electronic music.
-          </p>
+          <p>{recording}</p>
         </div>
 
         <div class="service-item">
           <h3>Mixing</h3>
-          <p>
-            Mix-only projects are welcome. Send us your session files (Pro Tools, Logic, Ableton, Reaper) and
-            we'll return a polished stereo mix, with revisions. We work closely with the artist throughout the
-            mix process rather than delivering one pass and asking for feedback.
-          </p>
+          <p>{mixing}</p>
         </div>
 
         <div class="service-item">
           <h3>Session Musicians</h3>
-          <p>
-            We maintain relationships with a small network of trusted session musicians — guitar, bass, drums,
-            keys, strings — who work in a way that complements rather than overwhelms a production. Available
-            on request.
-          </p>
+          <p>{session_musicians}</p>
         </div>
       </div>
     </section>
@@ -59,37 +46,61 @@ import Base from '../layouts/Base.astro';
         <div class="gear-category">
           <h3 class="text-label">Microphones</h3>
           <ul>
-            <li>Neumann U87 Ai</li>
-            <li>AKG C414 XLII (pair)</li>
-            <li>Shure SM7B</li>
-            <li>Sennheiser MD 421 II</li>
-            <li>Shure SM57 (×4)</li>
-            <li>Rode NT5 (pair)</li>
+            <li class="gear-subheading">Condenser</li>
+            <li>Lauten Audio Clarion FC-357</li>
+            <li>Rode NT1-A</li>
+            <li>Studio Projects C1</li>
+            <li>Blue Baby Bottle SL</li>
+            <li>SE Kick V</li>
+            <li>Shure PG98a (×2)</li>
+            <li class="gear-subheading">Dynamic</li>
+            <li>Shure SM57 (×2)</li>
+            <li>Shure SM58</li>
+            <li>Shure Beta 52A</li>
+            <li class="gear-subheading">Ribbon</li>
+            <li>T-Bone RB500 (×2)</li>
+            <li>Superlux R102</li>
           </ul>
         </div>
 
         <div class="gear-category">
           <h3 class="text-label">Production & Monitoring</h3>
           <ul>
-            <li>Mac Pro — Apple Silicon</li>
-            <li>Logic Pro X / Ableton Live 12</li>
-            <li>Universal Audio Apollo x8</li>
-            <li>SSL G-Series Bus Compressor (clone)</li>
-            <li>Neve 1073 Preamp (pair)</li>
-            <li>Focal Solo6 Be monitors</li>
-            <li>Yamaha HS5 (secondary)</li>
+            <li class="gear-subheading">Audio Interfaces</li>
+            <li>Audient EVO 16</li>
+            <li>Behringer ADA8200</li>
+            <li>Motu M4</li>
+            <li>M-Audio M-Track 2×2</li>
+            <li class="gear-subheading">Headphones</li>
+            <li>Beyerdynamic DT990 Pro 250Ω (×2)</li>
+            <li>Sony MDR-7506</li>
+            <li>Zoom ZHP-1</li>
+            <li class="gear-subheading">Additional</li>
+            <li>HK Powerworks Sound House PA (2 heads + sub)</li>
+            <li>Yamaha MG12XU Mixer</li>
           </ul>
         </div>
 
         <div class="gear-category">
           <h3 class="text-label">Instruments</h3>
           <ul>
-            <li>Fender Telecaster (1973)</li>
-            <li>Gibson ES-335</li>
-            <li>Fender Jazz Bass</li>
-            <li>Ludwig Classic Maple drum kit</li>
-            <li>Nord Stage 4</li>
-            <li>Moog Subsequent 37</li>
+            <li class="gear-subheading">Keys & Synths</li>
+            <li>Yamaha C3 Baby Grand</li>
+            <li>Korg SV1</li>
+            <li>Korg Kronos</li>
+            <li>Roland V-Combo V9</li>
+            <li>ASM Hydrasynth Deluxe</li>
+            <li>Behringer UB-XA</li>
+            <li>Behringer DeepMind 6</li>
+            <li class="gear-subheading">Strings</li>
+            <li>D'Angelico Acoustic Guitar</li>
+            <li>Ovation 12-String Acoustic</li>
+            <li>Eko Relic Electric Guitar</li>
+            <li>Eko Electric Bass</li>
+            <li class="gear-subheading">Drums</li>
+            <li>Pearl World Series (1984)</li>
+            <li>Vintage Pearl World Series 6.5×15"</li>
+            <li>14"×5" Pearl Wooden Snare</li>
           </ul>
         </div>
       </div>
@@ -100,6 +111,13 @@ import Base from '../layouts/Base.astro';
 <style>
   h1 {
     margin-block: 1rem 0;
+  }
+
+  .intro {
+    max-width: min(70ch, 100%);
+    color: var(--color-muted);
+    font-size: 1.1rem;
+    margin-top: 2rem;
   }
 
   .content-section {
@@ -130,7 +148,7 @@ import Base from '../layouts/Base.astro';
 
   .service-item p {
     color: var(--color-muted);
-    max-width: 55ch;
+    max-width: min(55ch, 100%);
   }
 
   .gear-grid {
@@ -149,14 +167,28 @@ import Base from '../layouts/Base.astro';
     margin: 0;
     padding: 0;
     display: grid;
-    gap: 0.5rem;
+    gap: 0;
   }
 
   .gear-category li {
     color: var(--color-muted);
     font-size: 0.875rem;
-    padding-bottom: 0.5rem;
+    padding: 0.4rem 0;
     border-bottom: 1px solid var(--color-border);
+  }
+
+  .gear-subheading {
+    color: var(--color-text);
+    font-size: 0.7rem !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding-top: 1rem !important;
+    border-bottom: none !important;
+  }
+
+  .gear-subheading:first-child {
+    padding-top: 0 !important;
   }
 
   @media (max-width: 900px) {

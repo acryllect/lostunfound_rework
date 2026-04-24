@@ -20,17 +20,19 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Artist", name: "artist", widget: "string" }
-      - {
-          label: "Category",
-          name: "category",
-          widget: "select",
-          options: ["Full Production", "Production & Engineering", "Mixing & Engineering"],
-        }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - "Production"
+          - "Engineering"
+          - "Production & Mixing"
+          - "Full Production"
       - { label: "Genre / Tags", name: "genre", widget: "list", required: false }
-      - { label: "Cover Image", name: "cover_image", widget: "image" }
+      - { label: "Cover Image", name: "cover_image", widget: "image", required: false }
       - { label: "Spotify URL", name: "spotify_url", widget: "string", required: false }
       - { label: "SoundCloud URL", name: "soundcloud_url", widget: "string", required: false }
-      - { label: "Description", name: "description", widget: "markdown", required: false }
+      - { label: "Description", name: "description", widget: "text", required: false }
       - label: "Credits"
         name: "credits"
         widget: "list"
@@ -40,3 +42,54 @@ collections:
           - { label: "Name", name: "name", widget: "string" }
       - { label: "Publish Date", name: "publish_date", widget: "datetime" }
       - { label: "Published", name: "published", widget: "boolean", default: true }
+
+  - name: "pages"
+    label: "Page Content"
+    files:
+      - name: "home"
+        label: "Home"
+        file: "src/content/pages/home.json"
+        fields:
+          - { label: "Intro text", name: "intro", widget: "text" }
+
+      - name: "about"
+        label: "About"
+        file: "src/content/pages/about.json"
+        fields:
+          - label: "Intro paragraphs"
+            name: "intro"
+            widget: "list"
+            field: { label: "Paragraph", name: "paragraph", widget: "text" }
+          - { label: "Alessandro — Name", name: "alessandro_name", widget: "string" }
+          - { label: "Alessandro — Role", name: "alessandro_role", widget: "string" }
+          - label: "Alessandro — Bio paragraphs"
+            name: "alessandro_bio"
+            widget: "list"
+            field: { label: "Paragraph", name: "paragraph", widget: "text" }
+          - { label: "Davide — Name", name: "davide_name", widget: "string" }
+          - { label: "Davide — Role", name: "davide_role", widget: "string" }
+          - label: "Davide — Bio paragraphs"
+            name: "davide_bio"
+            widget: "list"
+            field: { label: "Paragraph", name: "paragraph", widget: "text" }
+
+      - name: "services"
+        label: "Services"
+        file: "src/content/pages/services.json"
+        fields:
+          - { label: "Intro text", name: "intro", widget: "text" }
+          - { label: "Pre-Production description", name: "pre_production", widget: "text" }
+          - { label: "Recording & Production description", name: "recording", widget: "text" }
+          - { label: "Mixing description", name: "mixing", widget: "text" }
+          - { label: "Session Musicians description", name: "session_musicians", widget: "text" }
+
+      - name: "contact"
+        label: "Contact"
+        file: "src/content/pages/contact.json"
+        fields:
+          - { label: "Lead text", name: "lead", widget: "text" }
+          - { label: "No-form note", name: "no_form_note", widget: "string" }
+          - { label: "Email address", name: "email", widget: "string" }
+          - { label: "Location", name: "location", widget: "string" }
+          - { label: "Response time", name: "response_time", widget: "string" }
+          - { label: "Availability", name: "availability", widget: "string" }

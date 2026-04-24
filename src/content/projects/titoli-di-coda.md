@@ -1,7 +1,7 @@
 ---
 title: "Titoli di Coda"
 artist: "Rinaldo Serra"
-category: "Production & Engineering"
+category: "Production & Mixing"
 genre:
   - "Alternative"
   - "Post-Rock"

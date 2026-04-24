@@ -6,7 +6,7 @@ genre:
   - "Indie Pop"
   - "Singer-Songwriter"
 cover_image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&q=80"
-spotify_url: ""
+spotify_url: "https://open.spotify.com/track/2qdYtSMV59kParPzevytCQ"
 soundcloud_url: ""
 description: |
   Colpo di Sole started as a simple voice memo recorded on a phone at 2am. Mara sent it over with a single line: "I think this is the one." She was right.

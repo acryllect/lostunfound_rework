@@ -1,7 +1,7 @@
 ---
 title: "Deriva"
 artist: "Sofia Landi"
-category: "Production & Engineering"
+category: "Production & Mixing"
 genre:
   - "Electronic"
   - "Art Pop"

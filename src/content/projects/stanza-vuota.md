@@ -1,7 +1,7 @@
 ---
 title: "Stanza Vuota"
 artist: "Celeste Ricci"
-category: "Mixing & Engineering"
+category: "Engineering"
 genre:
   - "Folk"
   - "Acoustic"

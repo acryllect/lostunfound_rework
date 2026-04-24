@@ -4,6 +4,9 @@ import Base from '../layouts/Base.astro';
 import Button from '../components/Button.astro';
 import FilterBar from '../components/FilterBar.astro';
 import ProjectGrid from '../components/ProjectGrid.astro';
+import homeData from '../content/pages/home.json';
+
+const { intro } = homeData;
 
 const projects = (await getCollection('projects'))
   .filter((project) => project.data.published !== false)
@@ -17,9 +20,7 @@ const projects = (await getCollection('projects'))
       <span data-word="Lost">Lost</span>
       <span data-word="Unfound">Unfound</span>
     </h1>
-    <p class="intro">
-      Independent production and recording studio focused on texture, songwriting, and emotionally honest records.
-    </p>
+    <p class="intro">{intro}</p>
     <div class="cta-wrap">
       <Button href="/contact" label="Start a Project" />
     </div>
@@ -32,18 +33,6 @@ const projects = (await getCollection('projects'))
   </section>
 </Base>
 
-<script>
-  // Match button width to the rendered width of the intro paragraph
-  const intro = document.querySelector<HTMLElement>('.intro');
-  const ctaWrap = document.querySelector<HTMLElement>('.cta-wrap');
-  if (intro && ctaWrap) {
-    const setWidth = () => {
-      ctaWrap.style.width = `${intro.getBoundingClientRect().width}px`;
-    };
-    setWidth();
-    window.addEventListener('resize', setWidth);
-  }
-</script>
 
 <style>
   .hero {
@@ -54,7 +43,7 @@ const projects = (await getCollection('projects'))
   }
 
   .intro {
-    max-width: 62ch;
+    max-width: min(62ch, 100%);
     color: var(--color-muted);
   }
 
@@ -70,6 +59,7 @@ const projects = (await getCollection('projects'))
   }
 
   .cta-wrap {
+    max-width: min(62ch, 100%);
     opacity: 0;
     transform: translateY(10px);
     animation: cta-enter 0.5s ease-out forwards;

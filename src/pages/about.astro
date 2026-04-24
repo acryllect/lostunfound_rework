@@ -1,20 +1,23 @@
 ---
 import Base from '../layouts/Base.astro';
+import aboutData from '../content/pages/about.json';
+
+const {
+  intro,
+  alessandro_name, alessandro_role, alessandro_bio,
+  davide_name, davide_role, davide_bio,
+} = aboutData;
 ---
 
 <Base title="About | Lost Unfound Records">
   <div class="page-section">
     <p class="text-label">Who we are</p>
     <h1 class="text-display" data-scramble>
-      <span data-word="Two people.">Two people.</span>
-      <span data-word="One room.">One room.</span>
+      <span data-word="Built Around">Built Around</span>
+      <span data-word="the Song">the Song</span>
     </h1>
 
-    <p class="intro">
-      Lost Unfound is a recording and production studio built around a simple idea: the best records come from
-      genuine collaboration between people who trust each other. We're based in the Forlì / Bologna area of Italy,
-      and we work with artists who take their music seriously.
-    </p>
+    {(intro as string[]).map((p: string) => <p class="intro">{p}</p>)}
 
     <div class="profiles">
       <article class="profile">
@@ -25,18 +28,9 @@ import Base from '../layouts/Base.astro';
           />
         </div>
         <div class="profile-text">
-          <h2 class="text-heading">Alessandro Pelosio</h2>
-          <p class="text-label role">Producer · Sound Engineer · Mixer</p>
-          <p>
-            Alessandro has been recording and producing music for over a decade. His background spans studio
-            engineering, live sound, and electronic music production — which means he thinks about a record both
-            as a sound object and as a live experience. He has a particular interest in the relationship between
-            room acoustics and recorded tone, and a near-obsessive approach to low-frequency balance.
-          </p>
-          <p>
-            Outside the studio he plays guitar badly and reads about analogue signal processing. He is the reason
-            the studio has too many microphones.
-          </p>
+          <h2 class="text-heading">{alessandro_name}</h2>
+          <p class="text-label role">{alessandro_role}</p>
+          {(alessandro_bio as string[]).map((p: string) => <p>{p}</p>)}
         </div>
       </article>
 
@@ -48,17 +42,9 @@ import Base from '../layouts/Base.astro';
           />
         </div>
         <div class="profile-text">
-          <h2 class="text-heading">Davide Bacchi</h2>
-          <p class="text-label role">Songwriter · Producer · Assistant Engineer</p>
-          <p>
-            Davide approaches production from the songwriter's perspective first. Before any technical decisions
-            are made, he asks whether the arrangement is serving the song. His strength is in finding what a track
-            needs and removing what it doesn't — a discipline that often produces more impactful results than adding.
-          </p>
-          <p>
-            He has written and produced for artists across indie pop, folk, and experimental genres. He is the
-            reason the studio occasionally smells of very good coffee.
-          </p>
+          <h2 class="text-heading">{davide_name}</h2>
+          <p class="text-label role">{davide_role}</p>
+          {(davide_bio as string[]).map((p: string) => <p>{p}</p>)}
         </div>
       </article>
     </div>
@@ -67,10 +53,19 @@ import Base from '../layouts/Base.astro';
 
 <style>
   .intro {
-    max-width: 70ch;
+    max-width: min(70ch, 100%);
     color: var(--color-muted);
-    margin-block: 2rem 4rem;
+    margin: 0;
     font-size: 1.1rem;
+  }
+
+  h1 + .intro {
+    margin-top: 2rem;
+  }
+
+  .intro + .intro {
+    margin-top: 1rem;
+    margin-bottom: 4rem;
   }
 
   h1 {
@@ -115,17 +110,17 @@ import Base from '../layouts/Base.astro';
     filter: grayscale(30%);
   }
 
-  .role {
+  .profile-text .role {
     color: var(--color-accent);
     margin-block: 0.5rem 1.25rem;
   }
 
-  p {
+  .profile-text p {
     color: var(--color-muted);
-    max-width: 60ch;
+    max-width: min(60ch, 100%);
   }
 
-  p + p {
+  .profile-text p + p {
     margin-top: 1rem;
   }
 

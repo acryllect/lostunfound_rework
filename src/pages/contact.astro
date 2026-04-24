@@ -1,50 +1,44 @@
 ---
 import Base from '../layouts/Base.astro';
-import Button from '../components/Button.astro';
+import contactData from '../content/pages/contact.json';
+
+const { lead, no_form_note, email, location, response_time, availability } = contactData;
 ---
 
 <Base title="Contact | Lost Unfound Records">
   <div class="page-section contact-wrap">
     <p class="text-label">Get in touch</p>
     <h1 class="text-display" data-scramble>
-      <span data-word="Let's make">Let's make</span>
-      <span data-word="something.">something.</span>
+      <span data-word="Start">Start</span>
+      <span data-word="here.">here.</span>
     </h1>
 
-    <p class="lead">
-      Interested in working together? We'd love to hear about your project — whether it's fully formed
-      or still just an idea. We work with a small number of artists at a time, so reach out early.
-    </p>
+    <p class="lead">{lead}</p>
+    <p class="lead no-form">{no_form_note}</p>
 
     <div class="contact-block">
       <p class="text-label block-label">Email</p>
-      <a class="email-link text-heading" href="mailto:lostunfoundrecords@proton.me">
-        lostunfoundrecords@proton.me
-      </a>
+      <a class="email-link text-heading" href={`mailto:${email}`}>{email}</a>
     </div>
 
     <div class="detail-list">
       <div class="detail-item">
         <p class="text-label">Location</p>
-        <p>Forlì / Bologna area, Italy</p>
+        <p>{location}</p>
       </div>
       <div class="detail-item">
         <p class="text-label">Response time</p>
-        <p>We aim to reply within 48 hours.</p>
+        <p>{response_time}</p>
       </div>
       <div class="detail-item">
         <p class="text-label">Availability</p>
-        <p>Taking bookings from Spring 2025 onward.</p>
+        <p>{availability}</p>
       </div>
     </div>
   </div>
 </Base>
 
 <style>
-  .contact-wrap {
-    max-width: 900px;
-  }
-
   h1 {
     margin-block: 1rem 2rem;
   }
@@ -52,7 +46,10 @@ import Button from '../components/Button.astro';
   .lead {
     color: var(--color-muted);
     font-size: 1.1rem;
-    max-width: 62ch;
+    margin-bottom: 0.75rem;
+  }
+
+  .no-form {
     margin-bottom: 3rem;
   }
 

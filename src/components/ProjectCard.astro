@@ -1,12 +1,21 @@
 ---
+import { fetchArtwork } from '../utils/artwork';
+
 const { project, featured = false } = Astro.props;
 const data = project.data;
+
+const coverImage =
+  data.cover_image ||
+  (await fetchArtwork(data.artist, data.title, data.spotify_url));
 ---
 
 <article class:list={['project-card', featured && 'featured']} data-category={data.category}>
   <a href={`/projects/${project.id}`} class="card-link">
     <div class="img-wrap">
-      <img src={data.cover_image} alt={`${data.title} cover art`} loading="lazy" width="800" height="800" />
+      {coverImage
+        ? <img src={coverImage} alt={`${data.title} cover art`} loading="lazy" width="600" height="600" />
+        : <div class="img-placeholder" aria-hidden="true"></div>
+      }
     </div>
     <div class="card-text">
       <span class="text-label category">{data.category}</span>
@@ -54,6 +63,12 @@ const data = project.data;
 
   .project-card:hover img {
     transform: scale(1.03);
+  }
+
+  .img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--color-surface);
   }
 
   .card-text {

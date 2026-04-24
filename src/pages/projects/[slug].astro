@@ -3,7 +3,6 @@ import { getCollection } from 'astro:content';
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
 import SpotifyEmbed from '../../components/SpotifyEmbed.astro';
 import SoundCloudEmbed from '../../components/SoundCloudEmbed.astro';
-
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
   return projects.map((project) => ({
@@ -65,7 +64,6 @@ const metaItems = [category, ...(genre ?? [])];
   .project {
     display: grid;
     gap: 3rem;
-    max-width: 860px;
     animation: fade-up 0.4s ease-out both;
   }
 
@@ -119,7 +117,6 @@ const metaItems = [category, ...(genre ?? [])];
 
   .description {
     color: var(--color-muted);
-    max-width: 68ch;
     line-height: 1.75;
     margin: 0;
   }
