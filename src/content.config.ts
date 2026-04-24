@@ -6,9 +6,9 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     artist: z.string(),
-    category: z.enum(['Full Production', 'Production & Engineering', 'Mixing & Engineering']),
+    category: z.enum(['Production', 'Engineering', 'Production & Mixing', 'Full Production']),
     genre: z.array(z.string()).optional(),
-    cover_image: z.string(),
+    cover_image: z.string().optional(),
     spotify_url: z.string().url().optional().or(z.literal('')),
     soundcloud_url: z.string().url().optional().or(z.literal('')),
     description: z.string().optional(),
