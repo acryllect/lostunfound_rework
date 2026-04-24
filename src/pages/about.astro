@@ -3,13 +3,17 @@ import Base from '../layouts/Base.astro';
 import aboutData from '../content/pages/about.json';
 
 const {
+  seo_description,
   intro,
-  alessandro_name, alessandro_role, alessandro_bio,
-  davide_name, davide_role, davide_bio,
+  alessandro_name, alessandro_role, alessandro_bio, alessandro_image,
+  davide_name, davide_role, davide_bio, davide_image,
 } = aboutData;
+
+const alessandroSrc = alessandro_image || 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&q=80';
+const davideSrc = davide_image || 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&q=80';
 ---
 
-<Base title="About | Lost Unfound Records">
+<Base title="About | Lost Unfound Records" description={seo_description}>
   <div class="page-section">
     <p class="text-label">Who we are</p>
     <h1 class="text-display" data-scramble>
@@ -22,10 +26,7 @@ const {
     <div class="profiles">
       <article class="profile">
         <div class="profile-img-wrap">
-          <img
-            src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&q=80"
-            alt="Alessandro Pelosio"
-          />
+          <img src={alessandroSrc} alt={`${alessandro_name} — Lost Unfound Records`} />
         </div>
         <div class="profile-text">
           <h2 class="text-heading">{alessandro_name}</h2>
@@ -36,10 +37,7 @@ const {
 
       <article class="profile reverse">
         <div class="profile-img-wrap">
-          <img
-            src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&q=80"
-            alt="Davide Bacchi"
-          />
+          <img src={davideSrc} alt={`${davide_name} — Lost Unfound Records`} />
         </div>
         <div class="profile-text">
           <h2 class="text-heading">{davide_name}</h2>

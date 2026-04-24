@@ -3,12 +3,21 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import Grain from '../components/Grain.astro';
 import '../styles/global.css';
+import siteData from '../content/pages/site.json';
 
 interface Props {
   title?: string;
+  description?: string;
+  ogImage?: string;
 }
 
-const { title = 'Lost Unfound Records' } = Astro.props;
+const {
+  title = siteData.site_name,
+  description = siteData.site_description,
+  ogImage = siteData.og_image || undefined,
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://lostunfound.studio');
 ---
 
 <!doctype html>
@@ -16,13 +25,32 @@ const { title = 'Lost Unfound Records' } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <link rel="icon" href={siteData.favicon} type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteData.site_name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Work+Sans:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
-    <title>{title}</title>
   </head>
   <body>
     <Nav />
@@ -33,7 +61,7 @@ const { title = 'Lost Unfound Records' } = Astro.props;
     <Grain />
 
     <a
-      href="https://instagram.com/lostunfoundrecords"
+      href={siteData.instagram_url}
       target="_blank"
       rel="noopener noreferrer"
       class="ig-fab"

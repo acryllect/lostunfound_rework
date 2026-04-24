@@ -6,14 +6,14 @@ import FilterBar from '../components/FilterBar.astro';
 import ProjectGrid from '../components/ProjectGrid.astro';
 import homeData from '../content/pages/home.json';
 
-const { intro } = homeData;
+const { intro, seo_description } = homeData;
 
 const projects = (await getCollection('projects'))
   .filter((project) => project.data.published !== false)
   .sort((a, b) => b.data.publish_date.getTime() - a.data.publish_date.getTime());
 ---
 
-<Base title="Lost Unfound Records">
+<Base title="Lost Unfound Records" description={seo_description}>
   <section class="page-section hero">
     <p class="text-label">Forli / Bologna — Italy</p>
     <h1 class="text-hero" id="hero-title" data-scramble>

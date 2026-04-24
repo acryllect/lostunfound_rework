@@ -2,10 +2,10 @@
 import Base from '../layouts/Base.astro';
 import contactData from '../content/pages/contact.json';
 
-const { lead, no_form_note, email, location, response_time, availability } = contactData;
+const { seo_description, lead, no_form_note, email, location, response_time, availability } = contactData;
 ---
 
-<Base title="Contact | Lost Unfound Records">
+<Base title="Contact | Lost Unfound Records" description={seo_description}>
   <div class="page-section contact-wrap">
     <p class="text-label">Get in touch</p>
     <h1 class="text-display" data-scramble>

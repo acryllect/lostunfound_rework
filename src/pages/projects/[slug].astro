@@ -17,7 +17,11 @@ const { title, artist, category, genre, spotify_url, soundcloud_url, description
 const metaItems = [category, ...(genre ?? [])];
 ---
 
-<ProjectLayout title={`${title} | Lost Unfound Records`}>
+<ProjectLayout
+  title={`${title} — ${artist} | Lost Unfound Records`}
+  description={description ? `${description.slice(0, 155)}…` : `${title} by ${artist}. ${category} — Lost Unfound Records.`}
+  ogImage={project.data.cover_image || undefined}
+>
   <article class="project page-section">
 
     <div class="project-header">

@@ -2,10 +2,10 @@
 import Base from '../layouts/Base.astro';
 import servicesData from '../content/pages/services.json';
 
-const { intro, pre_production, recording, mixing, session_musicians } = servicesData;
+const { seo_description, intro, pre_production, recording, mixing, session_musicians } = servicesData;
 ---
 
-<Base title="Services & Gear | Lost Unfound Records">
+<Base title="Services & Gear | Lost Unfound Records" description={seo_description}>
   <div class="page-section">
     <p class="text-label">What we offer</p>
     <h1 class="text-display" data-scramble>

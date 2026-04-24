@@ -51,23 +51,27 @@ collections:
         file: "src/content/pages/home.json"
         fields:
           - { label: "Intro text", name: "intro", widget: "text" }
+          - { label: "SEO description", name: "seo_description", widget: "text", hint: "Shown in Google results and social sharing previews for the homepage." }
 
       - name: "about"
         label: "About"
         file: "src/content/pages/about.json"
         fields:
+          - { label: "SEO description", name: "seo_description", widget: "text", hint: "Shown in Google results and social sharing previews for the About page." }
           - label: "Intro paragraphs"
             name: "intro"
             widget: "list"
             field: { label: "Paragraph", name: "paragraph", widget: "text" }
           - { label: "Alessandro — Name", name: "alessandro_name", widget: "string" }
           - { label: "Alessandro — Role", name: "alessandro_role", widget: "string" }
+          - { label: "Alessandro — Photo", name: "alessandro_image", widget: "image", required: false, hint: "Portrait photo. Recommended aspect ratio 3:4." }
           - label: "Alessandro — Bio paragraphs"
             name: "alessandro_bio"
             widget: "list"
             field: { label: "Paragraph", name: "paragraph", widget: "text" }
           - { label: "Davide — Name", name: "davide_name", widget: "string" }
           - { label: "Davide — Role", name: "davide_role", widget: "string" }
+          - { label: "Davide — Photo", name: "davide_image", widget: "image", required: false, hint: "Portrait photo. Recommended aspect ratio 3:4." }
           - label: "Davide — Bio paragraphs"
             name: "davide_bio"
             widget: "list"
@@ -77,6 +81,7 @@ collections:
         label: "Services"
         file: "src/content/pages/services.json"
         fields:
+          - { label: "SEO description", name: "seo_description", widget: "text", hint: "Shown in Google results and social sharing previews for the Services page." }
           - { label: "Intro text", name: "intro", widget: "text" }
           - { label: "Pre-Production description", name: "pre_production", widget: "text" }
           - { label: "Recording & Production description", name: "recording", widget: "text" }
@@ -87,9 +92,31 @@ collections:
         label: "Contact"
         file: "src/content/pages/contact.json"
         fields:
+          - { label: "SEO description", name: "seo_description", widget: "text", hint: "Shown in Google results and social sharing previews for the Contact page." }
           - { label: "Lead text", name: "lead", widget: "text" }
           - { label: "No-form note", name: "no_form_note", widget: "string" }
           - { label: "Email address", name: "email", widget: "string" }
           - { label: "Location", name: "location", widget: "string" }
           - { label: "Response time", name: "response_time", widget: "string" }
           - { label: "Availability", name: "availability", widget: "string" }
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "site"
+        label: "Global Settings"
+        file: "src/content/pages/site.json"
+        fields:
+          - { label: "Site name", name: "site_name", widget: "string", hint: "Used as the og:site_name and default page title." }
+          - { label: "Default SEO description", name: "site_description", widget: "text", hint: "Fallback meta description used on pages that don't have their own." }
+          - label: "Default OG image"
+            name: "og_image"
+            widget: "image"
+            required: false
+            hint: "Shown when a page is shared on social media and has no specific image. Recommended size: 1200×630 px."
+          - label: "Favicon"
+            name: "favicon"
+            widget: "image"
+            required: false
+            hint: "Upload an SVG or PNG to use as the site icon. After uploading, copy the path shown and save."
+          - { label: "Instagram URL", name: "instagram_url", widget: "string", hint: "Full URL including https://. Shown as the floating button on all pages." }
