@@ -5,7 +5,10 @@ import Base from '../layouts/Base.astro';
 <Base title="About | Lost Unfound Records">
   <div class="page-section">
     <p class="text-label">Who we are</p>
-    <h1 class="text-display">Two people.<br />One room.</h1>
+    <h1 class="text-display" data-scramble>
+      <span data-word="Two people.">Two people.</span>
+      <span data-word="One room.">One room.</span>
+    </h1>
 
     <p class="intro">
       Lost Unfound is a recording and production studio built around a simple idea: the best records come from
@@ -124,5 +127,28 @@ import Base from '../layouts/Base.astro';
 
   p + p {
     margin-top: 1rem;
+  }
+
+  @media (max-width: 760px) {
+    .profiles {
+      gap: 3.5rem;
+    }
+
+    .profile,
+    .profile.reverse {
+      grid-template-columns: 1fr;
+    }
+
+    .profile.reverse .profile-img-wrap {
+      order: 0;
+    }
+
+    .profile.reverse .profile-text {
+      order: 1;
+    }
+
+    .profile-img-wrap {
+      aspect-ratio: 4 / 3;
+    }
   }
 </style>

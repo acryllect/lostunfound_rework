@@ -13,7 +13,7 @@ const projects = (await getCollection('projects'))
 <Base title="Lost Unfound Records">
   <section class="page-section hero">
     <p class="text-label">Forli / Bologna — Italy</p>
-    <h1 class="text-hero" id="hero-title">
+    <h1 class="text-hero" id="hero-title" data-scramble>
       <span data-word="Lost">Lost</span>
       <span data-word="Unfound">Unfound</span>
     </h1>
@@ -33,36 +33,6 @@ const projects = (await getCollection('projects'))
 </Base>
 
 <script>
-  const chars = '!<>-_\\/[]{}=+*^?#________';
-
-  function scrambleLine(el: HTMLElement, delay: number) {
-    const final = el.dataset.word || el.textContent || '';
-    let frame = 0;
-    const totalFrames = 18;
-
-    const tick = () => {
-      const progress = frame / totalFrames;
-      const revealed = Math.floor(final.length * progress);
-      el.textContent = final
-        .split('')
-        .map((ch, i) =>
-          i < revealed ? ch : chars[Math.floor(Math.random() * chars.length)]
-        )
-        .join('');
-      frame++;
-      if (frame <= totalFrames) {
-        setTimeout(tick, 40);
-      } else {
-        el.textContent = final;
-      }
-    };
-
-    setTimeout(tick, delay);
-  }
-
-  const spans = document.querySelectorAll<HTMLElement>('#hero-title span[data-word]');
-  spans.forEach((el, i) => scrambleLine(el, 120 + i * 200));
-
   // Match button width to the rendered width of the intro paragraph
   const intro = document.querySelector<HTMLElement>('.intro');
   const ctaWrap = document.querySelector<HTMLElement>('.cta-wrap');
@@ -92,6 +62,7 @@ const projects = (await getCollection('projects'))
     display: grid;
     gap: 0.05em;
     margin: 0;
+    margin-left: -0.04em;
   }
 
   .text-hero span {

@@ -177,4 +177,16 @@ const metaItems = [category, ...(genre ?? [])];
   .back a:hover {
     color: var(--color-text);
   }
+
+  @media (max-width: 560px) {
+    .credits li {
+      grid-template-columns: 1fr;
+      gap: 0.2rem;
+      padding: 0.7rem 0;
+    }
+
+    .credit-name {
+      padding-bottom: 0.35rem;
+    }
+  }
 </style>

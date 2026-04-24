@@ -6,7 +6,10 @@ import Button from '../components/Button.astro';
 <Base title="Contact | Lost Unfound Records">
   <div class="page-section contact-wrap">
     <p class="text-label">Get in touch</p>
-    <h1 class="text-display">Let's make<br />something.</h1>
+    <h1 class="text-display" data-scramble>
+      <span data-word="Let's make">Let's make</span>
+      <span data-word="something.">something.</span>
+    </h1>
 
     <p class="lead">
       Interested in working together? We'd love to hear about your project — whether it's fully formed
@@ -69,6 +72,7 @@ import Button from '../components/Button.astro';
     text-decoration: none;
     display: inline-block;
     transition: color 0.2s ease;
+    word-break: break-all;
   }
 
   .email-link:hover {
@@ -95,6 +99,10 @@ import Button from '../components/Button.astro';
   @media (max-width: 680px) {
     .detail-list {
       grid-template-columns: 1fr;
+    }
+
+    .email-link {
+      font-size: clamp(1.1rem, 5vw, 1.5rem);
     }
   }
 </style>

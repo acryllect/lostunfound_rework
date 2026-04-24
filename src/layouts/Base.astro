@@ -19,7 +19,7 @@ const { title = 'Lost Unfound Records' } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Syne:wght@400;700;800&family=Work+Sans:wght@300;400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Work+Sans:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
     <title>{title}</title>
@@ -31,5 +31,97 @@ const { title = 'Lost Unfound Records' } = Astro.props;
     </main>
     <Footer />
     <Grain />
+
+    <a
+      href="https://instagram.com/lostunfoundrecords"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="ig-fab"
+      aria-label="Lost Unfound on Instagram"
+    >
+      <svg class="ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="4.5"/>
+        <circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none"/>
+      </svg>
+      <span class="ig-label text-label">Instagram</span>
+    </a>
   </body>
 </html>
+
+<style>
+  .ig-fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1rem 0.6rem 0.75rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  }
+
+  .ig-fab:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 10%, var(--color-surface));
+  }
+
+  .ig-icon {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .ig-label {
+    line-height: 1;
+  }
+
+  @media (max-width: 760px) {
+    .ig-fab {
+      bottom: 1.25rem;
+      right: 1.25rem;
+      padding: 0.6rem;
+    }
+
+    .ig-label {
+      display: none;
+    }
+
+    .ig-icon {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+</style>
+
+<script>
+  const chars = '!<>-_\\/[]{}=+*^?#________';
+
+  function scramble(el: HTMLElement, delay: number) {
+    const final = el.dataset.word || el.textContent || '';
+    let frame = 0;
+    const totalFrames = 18;
+    const tick = () => {
+      const progress = frame / totalFrames;
+      const revealed = Math.floor(final.length * progress);
+      el.textContent = final
+        .split('')
+        .map((ch, i) => (i < revealed ? ch : chars[Math.floor(Math.random() * chars.length)]))
+        .join('');
+      frame++;
+      if (frame <= totalFrames) setTimeout(tick, 40);
+      else el.textContent = final;
+    };
+    setTimeout(tick, delay);
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-scramble] span[data-word]').forEach((el, i) => {
+    scramble(el, 80 + i * 220);
+  });
+</script>
