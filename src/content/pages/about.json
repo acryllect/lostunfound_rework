@@ -1,21 +1,21 @@
 {
-  "seo_description": "Meet the team behind Lost Unfound Records — Alessandro Pelosio and Davide Bacchi, producer-engineers based in Forlì / Bologna, Italy.",
-  "intro": [
-    "Lost Unfound is a production and recording studio based in Forlì / Bologna, Italy, built by two people who genuinely love music.",
-    "There are no layers here. When you work with us, you work with us. We're invested in the song, in the process, and in making sure the record you leave with actually sounds like you."
-  ],
-  "alessandro_name": "Alessandro Pelosio",
-  "alessandro_role": "Songwriter · Producer · Sound Engineer",
   "alessandro_bio": [
     "I started studying music production seriously in 2020, through a combination of seminars, books, and a lot of trial and error. I'm currently finishing my third and final year of a sound engineering degree at a professional academy in Bologna, in partnership with Coventry University, which has given me a much more rigorous framework to hang everything I'd already been learning on.",
     "In the studio, I tend to work on the structural and technical side of things, actually putting together the pieces of a production and making sure they do what they're supposed to. I like to get as close to the desired result through the source as possible."
   ],
-  "davide_name": "Davide Bacchi",
   "davide_role": "Songwriter · Producer · Assistant Engineer",
-  "alessandro_image": "",
+  "intro": [
+    "Lost Unfound is a production and recording studio based in Forlì / Bologna, Italy, built by two people who genuinely love music.",
+    "There are no layers here. When you work with us, you work with us. We're invested in the song, in the process, and in making sure the record you leave with actually sounds like you."
+  ],
   "davide_image": "",
+  "alessandro_name": "Alessandro Pelosio",
+  "alessandro_image": "/images/uploads/ale_foto.jpg",
+  "davide_name": "Davide Bacchi",
   "davide_bio": [
     "I came to production through music theory, which I think shapes everything about how I listen. I studied piano and solfeggio for over ten years at Istituto Musicale Masini in Forlì, and later earned my A level certification in classical piano and solfeggio at Conservatorio G. Lettimi in Rimini. This helped me gain an understanding of harmony, structure, and how musical choices carry emotional weight.",
     "When I work on a song, the first question I'm always asking is whether the arrangement is actually serving the idea at the centre of it. My instinct is to remove before I add, to find what's essential and let that breathe. I help artists develop their ideas, sharpen their arrangements, and make decisions that feel grounded rather than arbitrary, while staying open to the moments when something unexpected turns out to be exactly right."
-  ]
+  ],
+  "seo_description": "Meet the team behind Lost Unfound Records — Alessandro Pelosio and Davide Bacchi, producer-engineers based in Forlì / Bologna, Italy.",
+  "alessandro_role": "Songwriter · Producer · Sound Engineer"
 }
