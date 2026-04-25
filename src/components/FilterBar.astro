@@ -1,10 +1,13 @@
 ---
-const categories = ['All', 'Production', 'Engineering', 'Production & Mixing', 'Full Production'];
+const categories = ['Songwriting', 'Production', 'Mixing', 'Mastering'];
 ---
 
 <div class="filter-bar" id="filter-bar">
-  {categories.map((category, index) => (
-    <button class:list={['filter-button text-label', index === 0 && 'is-active']} data-filter={category} type="button">
+  <button class="filter-button text-label is-active" data-filter="All" type="button">
+    All
+  </button>
+  {categories.map((category) => (
+    <button class="filter-button text-label" data-filter={category} type="button">
       {category}
     </button>
   ))}
@@ -13,12 +16,31 @@ const categories = ['All', 'Production', 'Engineering', 'Production & Mixing', '
 <script>
   const bar = document.getElementById('filter-bar');
   if (bar) {
-    const buttons = [...bar.querySelectorAll('.filter-button')];
-    buttons.forEach((button) => {
-      button.addEventListener('click', () => {
-        buttons.forEach((b) => b.classList.remove('is-active'));
-        button.classList.add('is-active');
-        window.dispatchEvent(new CustomEvent('project-filter-change', { detail: button.dataset.filter }));
+    const allBtn = bar.querySelector<HTMLButtonElement>('[data-filter="All"]')!;
+    const catBtns = [...bar.querySelectorAll<HTMLButtonElement>('.filter-button:not([data-filter="All"])')];
+    const selected = new Set<string>();
+
+    function updateAll() {
+      const noneActive = selected.size === 0;
+      allBtn.classList.toggle('is-active', noneActive);
+      catBtns.forEach((b) => b.classList.toggle('is-active', selected.has(b.dataset.filter!)));
+      window.dispatchEvent(new CustomEvent('project-filter-change', { detail: [...selected] }));
+    }
+
+    allBtn.addEventListener('click', () => {
+      selected.clear();
+      updateAll();
+    });
+
+    catBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const val = btn.dataset.filter!;
+        if (selected.has(val)) {
+          selected.delete(val);
+        } else {
+          selected.add(val);
+        }
+        updateAll();
       });
     });
   }

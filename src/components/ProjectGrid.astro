@@ -12,9 +12,11 @@ const { projects } = Astro.props;
   if (grid) {
     const cards = [...grid.querySelectorAll('.project-card')];
     window.addEventListener('project-filter-change', (event) => {
-      const selected = event.detail;
+      const selected: string[] = event.detail;
       cards.forEach((card) => {
-        const match = selected === 'All' || card.dataset.category === selected;
+        const cardCats: string[] = JSON.parse(card.dataset.categories || '[]');
+        // AND logic: show only if card has every selected category
+        const match = selected.length === 0 || selected.every((s) => cardCats.includes(s));
         card.style.transition = 'opacity 150ms ease';
         card.style.opacity = match ? '1' : '0';
         setTimeout(() => {

@@ -9,7 +9,7 @@ const coverImage =
   (await fetchArtwork(data.artist, data.title, data.spotify_url));
 ---
 
-<article class:list={['project-card', featured && 'featured']} data-category={data.category}>
+<article class:list={['project-card', featured && 'featured']} data-categories={JSON.stringify(data.categories)}>
   <a href={`/projects/${project.id}`} class="card-link">
     <div class="img-wrap">
       {coverImage
@@ -18,7 +18,9 @@ const coverImage =
       }
     </div>
     <div class="card-text">
-      <span class="text-label category">{data.category}</span>
+      <div class="categories">
+        {data.categories.map((cat) => <span class="text-label category">{cat}</span>)}
+      </div>
       <h3>{data.title}</h3>
       <p class="artist">{data.artist}</p>
     </div>
@@ -83,6 +85,12 @@ const coverImage =
 
   .project-card:hover .card-text {
     background: var(--color-surface);
+  }
+
+  .categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
   }
 
   .category {

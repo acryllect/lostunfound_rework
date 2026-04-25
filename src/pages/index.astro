@@ -23,10 +23,14 @@ const projects = (await getCollection('projects'))
     <p class="intro">{intro}</p>
     <div class="cta-wrap">
       <Button href="/contact" label="Start a Project" />
+      <a href="#portfolio" class="scroll-cta text-label">
+        See what we've worked on
+        <span class="scroll-arrow" aria-hidden="true">↓</span>
+      </a>
     </div>
   </section>
 
-  <section class="page-section">
+  <section class="page-section" id="portfolio">
     <h2 class="text-heading">Portfolio</h2>
     <FilterBar />
     <ProjectGrid projects={projects} />
@@ -36,14 +40,16 @@ const projects = (await getCollection('projects'))
 
 <style>
   .hero {
-    min-height: 62vh;
+    /* Fills the visible screen so the portfolio starts just below the fold.
+       Content stays in the lower-middle area via padding-bottom. */
+    min-height: calc(100svh - 4.5rem);
     display: grid;
     align-content: end;
     gap: 1.25rem;
+    padding-bottom: clamp(4rem, 38svh, 20rem);
   }
 
   .intro {
-    max-width: min(62ch, 100%);
     color: var(--color-muted);
   }
 
@@ -60,6 +66,7 @@ const projects = (await getCollection('projects'))
 
   .cta-wrap {
     max-width: min(62ch, 100%);
+    margin-top: 1.5rem;
     opacity: 0;
     transform: translateY(10px);
     animation: cta-enter 0.5s ease-out forwards;
@@ -69,6 +76,30 @@ const projects = (await getCollection('projects'))
   .cta-wrap :global(.btn) {
     width: 100%;
     justify-content: center;
+  }
+
+  .scroll-cta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+    color: var(--color-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    width: fit-content;
+  }
+
+  .scroll-cta:hover {
+    color: var(--color-text);
+  }
+
+  .scroll-arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  .scroll-cta:hover .scroll-arrow {
+    transform: translateY(3px);
   }
 
   h2 {

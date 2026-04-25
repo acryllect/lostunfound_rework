@@ -1,31 +1,31 @@
 ---
 title: Colpo di Sole
 artist: WAVE
-category: Full Production
-genre:
-  - Indie Pop
-  - Indie Soul
-cover_image: ""
-spotify_url: https://open.spotify.com/track/2qdYtSMV59kParPzevytCQ
-soundcloud_url: ""
+categories: [Songwriting, Production, Mixing, Mastering]
+genre: [Indie Soul]
+cover_image: "https://cdn.prod.website-files.com/69402d3ceb28e72b115ec9d5/6941778a970e7e7263c92aba_COLPO%20DI%20SOLE%20final.jpg"
+spotify_url: "https://open.spotify.com/track/2qdYtSMV59kParPzevytCQ"
 description: >
-  Colpo di Sole started as a simple voice memo recorded on a phone at 2am. Mara
-  sent it over with a single line: "I think this is the one." She was right.
-
-
-  We spent three weeks building the track around her voice — keeping the fragility of that original recording while giving it space to breathe. The production is deliberately sparse in the verses, letting the lyric carry the weight, before opening up into something warmer and more expansive in the chorus.
-
-
-  Recorded and mixed at Lost Unfound Studio. All instruments performed live with minimal overdubs.
+  This is the first single of an EP of four songs, which we worked on as our main project for the last few months.
 credits:
+  - role: Vocals & Keys
+    name: Davide Bacchi
+  - role: Drums
+    name: Gabriele Rossi
+  - role: Guitars
+    name: Diego Ciccioni, Alessandro Pelosio
+  - role: Bass
+    name: Nicolò Succi
   - role: Producer
     name: Alessandro Pelosio
-  - role: Sound Engineer
-    name: Alessandro Pelosio
-  - role: Songwriter
+  - role: Co-Producer
     name: Davide Bacchi
-  - role: Vocals & Guitar
-    name: Mara Vinci
-publish_date: 2024-11-01
+  - role: Mixing
+    name: Alessandro Pelosio
+  - role: Mastering
+    name: Alessandro Pelosio
+  - role: Assistant Engineer
+    name: Davide Bacchi
+publish_date: 2025-12-22
 published: true
 ---
