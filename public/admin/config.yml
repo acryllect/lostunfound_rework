@@ -20,14 +20,15 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Artist", name: "artist", widget: "string" }
-      - label: "Category"
-        name: "category"
+      - label: "Categories"
+        name: "categories"
         widget: "select"
+        multiple: true
         options:
+          - "Songwriting"
           - "Production"
-          - "Engineering"
-          - "Production & Mixing"
-          - "Full Production"
+          - "Mixing"
+          - "Mastering"
       - { label: "Genre / Tags", name: "genre", widget: "list", required: false }
       - { label: "Cover Image", name: "cover_image", widget: "image", required: false }
       - { label: "Spotify URL", name: "spotify_url", widget: "string", required: false }
